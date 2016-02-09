@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Ajax With Jquery</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        $(document).ready(setInterval(function(){
+           
+
+              $.ajax({
+                url: '/realtime.php',
+                type: "POST",
+                data: "server=localhost",
+                cache: true,
+               // dataType: "JSON",
+                success: function(response){
+                    //console.log(response);
+                    document.getElementById('leader-board').innerHTML = response
+//                            
+                }
+              });
+
+       
+
+        }, 1000));
+
+    </script>
+</head>
+
+<body>
+    <h2 id="leader-board"></h2>
+
+</body>
+</html>

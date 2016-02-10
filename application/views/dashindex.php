@@ -1,4 +1,8 @@
-
+<?php
+if($serverlist){
+	$count = count($serverlist);
+}
+?>
 
 <div id="page-wrapper">
             <div class="row">
@@ -17,12 +21,12 @@
                                     <i class="fa fa-desktop fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge"><?php echo $count; ?></div>
                                     <div>All Server</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="/ci/server/serverlist">
+                        <a href="<?php echo base_url();?>server/serverlist">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

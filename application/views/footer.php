@@ -16,44 +16,44 @@
     
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="/ci/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="/ci/assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-<script type="text/javascript"  src="/ci/assets/dist/js/bootstrap-datetimepicker.js">
+    <script src="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<script type="text/javascript"  src="<?php echo base_url(); ?>assets/dist/js/bootstrap-datetimepicker.js">
     </script>
     <!-- Custom Theme JavaScript -->
-    <script src="/ci/assets/dist/js/sb-admin-2.js"></script>
-    <script src="/ci/assets/dist/js/moment.js"></script>
-<script src="/ci/assets/dist/js/bootstrap-datepicker.js"></script>
-<script src="/ci/assets/dist/js/bootstrap-timepicker.js"></script>
-<script src="/ci/assets/dist/js/pgenerator.js"></script>
-<script src="/ci/assets/dist/js/bootstrap-paginator.min.js"></script>
-<script src="/ci/assets/dist/js/bootstrap-multiselect.js"></script>
-<script src="/ci/assets/dist/js/jquery.classyedit.js"></script>
-<!--<script src="/ci/assets/dist/js/bootstrap-switch.min.js"></script>-->
+    <script src="<?php echo base_url(); ?>assets/dist/js/sb-admin-2.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dist/js/moment.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrap-datepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrap-timepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/pgenerator.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrap-paginator.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/bootstrap-multiselect.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/jquery.classyedit.js"></script>
+<!--<script src="<?php echo base_url(); ?>assets/dist/js/bootstrap-switch.min.js"></script>-->
 
 
 
 
 
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-<script type="text/javascript" src="/ci/assets/global/plugins/select2/select2.min.js"></script>
-<script type="text/javascript" src="/ci/assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 
-<script type="text/javascript" src="/ci/assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
-<script type="text/javascript" src="/ci/assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
-<script type="text/javascript" src="/ci/assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
-<script type="text/javascript" src="/ci/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/extensions/Scroller/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 
-<!-- <script type="text/javascript" src="/ci/assets/dist/js/jquery.dataTables.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/dist/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="http://www.datatables.net/release-datatables/extensions/TableTools/js/dataTables.tableTools.js">
 	
 </script> -->
 
-<script src="/ci/assets/choosen/chosen.jquery.js" type="text/javascript"></script>
-  <script src="/ci/assets/choosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo base_url(); ?>assets/choosen/chosen.jquery.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/choosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
 
   <script type="text/javascript">
     var config = {
@@ -522,55 +522,6 @@ $(document).on("click", ".emailsend", function () {
   </script>
   
   
-  <script type="text/javascript">
-$(document).ready(function(){
-	$("#search-box").keyup(function(){
-		$.ajax({
-		type: "POST",
-		url: "http://10.222.10.160/ci/pkgslist.php",
-		data:'keyword='+$(this).val()+'&status=Available',
-		beforeSend: function(){
-			$("#search-box").css("background","#FFF url(http://localhost/ci/LoaderIcon.gif) no-repeat 165px");
-		},
-		success: function(data){
-			$("#suggesstion-box").show();
-			$("#suggesstion-box").html(data);
-			$("#search-box").css("background","#FFF");
-		}
-		});
-	});
-});
-
-
-$(document).ready(function(){
-	$("#search-box2").keyup(function(){
-		$.ajax({
-		type: "POST",
-		url: "http://10.222.10.160/ci/pkgslist.php",
-		data:'keyword='+$(this).val()+'&status=Installed',
-		beforeSend: function(){
-			$("#search-box2").css("background","#FFF url(http://localhost/ci/LoaderIcon.gif) no-repeat 165px");
-		},
-		success: function(data){
-			$("#suggesstion-box2").show();
-			$("#suggesstion-box2").html(data);
-			$("#search-box2").css("background","#FFF");
-		}
-		});
-	});
-});
-//To select country name
-function selectCountry(val) {
-$("#search-box").val(val);
-$("#suggesstion-box").hide();
-}
-
-function selectCountry1(val) {
-$("#search-box2").val(val);
-$("#suggesstion-box2").hide();
-}
-
-</script>
   
 <script type="text/javascript" >
 

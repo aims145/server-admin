@@ -8,7 +8,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/ci/admin">Server Administration</a>
+                <a class="navbar-brand" href="<?php echo base_url();?>admin">Server Administration</a>
                 
             </div>
             <!-- /.navbar-header -->
@@ -240,10 +240,10 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/ci/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="<?php echo base_url();?>admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="/ci/server/serverlist"><i class="fa fa-fw fa-th-list"></i> Server List</a>
+                            <a href="<?php echo base_url();?>server/serverlist"><i class="fa fa-fw fa-th-list"></i> Server List</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Server Status<span class="fa arrow"></span></a>
@@ -268,7 +268,7 @@
                         </li>-->
                        <?php  if($this->session->userdata['logged_in']['role'] == 'admin') { ?>
                         <li> 
-                            <a href="/ci/server/credentials"><i class="fa fa-edit fa-fw"></i>Credentials</a>
+                            <a href="<?php echo base_url();?>server/credentials"><i class="fa fa-edit fa-fw"></i>Credentials</a>
                         </li>
           				<?php } ?>     
           				
@@ -296,13 +296,13 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Tools<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/ci/server/tools/terminal">Terminal</a>
+                                    <a href="<?php echo base_url();?>server/tools/terminal">Terminal</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo base_url();?>server/tools/ping">Ping</a>
                                 </li>
                                 <li>
-                                    <a href="/ci/server/tools/installpackages">Install Packages</a>
+                                    <a href="<?php echo base_url();?>server/tools/installpackages">Install Packages</a>
                                 </li>
                                 
                             </ul>
@@ -348,7 +348,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li> 
-                            <a href="/ci/admin/users"><i class=" glyphicon glyphicon-user"></i> User Management</a>
+                            <a href="<?php echo base_url();?>admin/users"><i class=" glyphicon glyphicon-user"></i> User Management</a>
                         </li>
                     </ul>
                 </div>

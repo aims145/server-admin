@@ -36,7 +36,9 @@
                                             <th>Server IP</th>
                                             <th>Remark</th>
                                             <?php if ($this->session->userdata['logged_in']['role'] == 'admin') { ?>
-                                            <th>View / Edit / Delete</th>
+                                            <th>View </th>
+                                            <th> Edit </th>
+                                            <th> Delete</th>
                                             <?php } ?>
                                             
                                         </tr>
@@ -51,9 +53,9 @@
 if ($this->session->userdata['logged_in']['role'] == 'admin'){ 													
                                                    echo '<td>    
 
-<a href="'.base_url().'server/serverlist#viewserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-default viewserver" >View</a>                                                    
-<a href="'.base_url().'server/serverlist#editserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-primary editserver" onclick="editserver(this);">Edit</a>
-<a href="'.base_url().'server/serverlist#deleteserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-danger delserver">Delete</a>
+<a href="'.base_url().'server/serverlist#viewserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-default viewserver" >View</a></td>                                                    
+<td><a href="'.base_url().'server/serverlist#editserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-primary editserver" onclick="editserver(this);">Edit</a></td>
+<td><a href="'.base_url().'server/serverlist#deleteserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-danger delserver">Delete</a>
                                                     </td>';
 }
                                                     

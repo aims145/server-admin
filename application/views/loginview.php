@@ -9,7 +9,7 @@
                     </div>
                      
                     <div class="panel-body">
-                        <form role="form" action="/ci/verifylogin" method="post"
+                        <form role="form" action="<?php echo base_url();?>verifylogin" method="post"
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="User Name" name="username" type="text" autofocus>

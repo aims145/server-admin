@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = "http://10.222.8.131/cvserver-admin/";
+$config['base_url'] = "http://localhost/cvserver-admin/";
 
 /*
 |--------------------------------------------------------------------------

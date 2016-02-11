@@ -76,20 +76,9 @@
 
 $(document).ready(function() {
     $('#myTable').DataTable( {
-        dom: 'T<"clear">lfrtip',
-        tableTools: {
-            "aButtons": [
-                "copy",
-                "csv",
-                "xls",
-                {
-                    "sExtends": "pdf",
-                    "sPdfOrientation": "landscape",
-                    "sPdfMessage": "You have taken this Data from CV Server Admin App"
-                },
-                "print"
-            ]
-        }
+        
+        "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 0, 1 ] } ]
+        
     } );
 } );
 </script>

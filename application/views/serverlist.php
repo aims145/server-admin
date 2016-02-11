@@ -32,6 +32,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="myTable">
                                     <thead>
                                         <tr>
+                                            <th><input type="checkbox" /></th>
                                             <th>Server Name</th>
                                             <th>Server IP</th>
                                             <th>Remark</th>
@@ -44,11 +45,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    
                                         <?php 
                                         if(isset($show_table)) {
                                         foreach ($show_table as $server)
                                         {
-                                            echo '<tr class="odd gradeX">' . '<td>' . $server->server_name . '</td>' . '<td>' . $server->server_ip . 
+                                            echo '<tr class="odd gradeX">' . '<td></td><td>' . $server->server_name . '</td>' . '<td>' . $server->server_ip . 
                                                     '</td>' . '<td>' . $server->Remark . '</td>';
 if ($this->session->userdata['logged_in']['role'] == 'admin'){ 													
                                                    echo '<td>    

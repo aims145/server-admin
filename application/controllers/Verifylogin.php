@@ -1,9 +1,10 @@
 <?php 
-require('Encdec.php');
+
 class Verifylogin extends CI_Controller{
     public function __construct(){
         parent::__construct();
          $this->load->model('Verify');
+         
      }
  function index()
  {
@@ -31,16 +32,12 @@ class Verifylogin extends CI_Controller{
  function check_database($password)
  {
    //Field validation succeeded.  Validate against database
-   //$username = $this->input->post('username');
  
-   $enc = new Encdec();
    $username = $this->input->post('username');
-   $action = "encrypt";
-   $encrypted = $enc->encrypt_decrypt($action, $password);
    
    
    //query the database
-   $result = $this->Verify->index($username, $encrypted);
+   $result = $this->Verify->index($username, $password);
  
    if($result)
    {

@@ -41,7 +41,7 @@ function showform(){
                             <th>Protocol</th>
                             <th>User Name</th>
                             <th>Password</th>
-                            <th>Edit / Delete</th>
+                            <th>Action</th>
                             
 
                         </tr>
@@ -50,7 +50,25 @@ function showform(){
                         <?php
                         
                         foreach($creddata as $cred){
-                            echo "<tr><td>".$cred->server_name."</td><td>".$cred->server_ip."</td><td>".$cred->Protocol."</td><td>".$cred->username."</td><td>".htmlspecialchars($cred->password)."</td><td><a data-toggle='modal' href='#editcred' data-id='".$cred->id."' class='btn btn-default edit' onclick='editcred(this);' >Edit</a> / <a href='#deletecred' data-toggle='modal' class='btn btn-danger delete' data-id='".$cred->id."' id='delete' >Delete</a></td></tr>";
+                            echo "<tr>
+                            <td>".$cred->server_name."</td>
+                            <td>".$cred->server_ip."</td>
+                            <td>".$cred->Protocol."</td>
+                            <td>".$cred->username."</td>
+                            
+                            <td class='col-lg-3'>
+                            	<div class='form-group input-group'>
+                            	<input class='form-control' type='text' id='pass".$cred->id."' value='".htmlspecialchars($cred->password)."'>
+    <span class='input-group-btn'>
+                    			<button class='btn btn-default btn-passcopy' id='passcopy' type='button' data-clipboard-demo='' data-clipboard-target='#pass".$cred->id."'>
+                        <i class='fa fa-copy'></i>
+                    </button>
+                </span>
+                </div>
+</td>
+                            <td><a data-toggle='modal' href='#editcred' data-id='".$cred->id."' class='btn btn-default edit' onclick='editcred(this);' title='Edit'><i class='fa fa-edit'></i></a>  <a href='#deletecred' data-toggle='modal' class='btn btn-danger delete' data-id='".$cred->id."' id='delete' title='Delete'><i class='fa fa-trash-o'></i></a></td>
+                            </tr>";
+							
                         }
                         
                         //

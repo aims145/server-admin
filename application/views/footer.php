@@ -31,6 +31,7 @@
 <script src="<?php echo base_url(); ?>assets/dist/js/bootstrap-paginator.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/bootstrap-multiselect.js"></script>
 <script src="<?php echo base_url(); ?>assets/dist/js/jquery.classyedit.js"></script>
+<script src="<?php echo base_url(); ?>assets/dist/js/clipboard.js"></script>
 <!--<script src="<?php echo base_url(); ?>assets/dist/js/bootstrap-switch.min.js"></script>-->
 
 
@@ -538,6 +539,22 @@ $(document).on("click", ".deleteuser", function () {
         $('#hostmultiselect').multiselect();
     });
 </script>
+
+<script>
+
+    // var btn = document.getElementById('passcopy');
+    var clipboard = new Clipboard('.btn-passcopy');
+    clipboard.on('success', function(e) {
+    	//alert(e.id);
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+</script>
+
+
+
 
 
 </body>

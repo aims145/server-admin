@@ -1,10 +1,10 @@
 <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Server List</h1>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Server List</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
             <!-- /.row -->
   <?php if(isset($msg)){ ?>
     <div class="alert alert-success" role="alert" id="delcred" ><?php echo $msg; ?></div>
@@ -32,7 +32,7 @@
                                 <table class="table table-striped table-bordered table-hover" id="myTable">
                                     <thead>
                                         <tr>
-                                            <th><input type="checkbox" /></th>
+                                            
                                             <th>Server Name</th>
                                             <th>Server IP</th>
                                             <th>Remark</th>
@@ -50,7 +50,7 @@
                                         if(isset($show_table)) {
                                         foreach ($show_table as $server)
                                         {
-                                            echo '<tr class="odd gradeX">' . '<td></td><td>' . $server->server_name . '</td>' . '<td>' . $server->server_ip . 
+                                            echo '<tr class="odd gradeX">' . '<td>' . $server->server_name . '</td>' . '<td>' . $server->server_ip . 
                                                     '</td>' . '<td>' . $server->Remark . '</td>';
 if ($this->session->userdata['logged_in']['role'] == 'admin'){ 													
                                                    echo '<td>    

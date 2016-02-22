@@ -283,7 +283,7 @@
                                 </li>
                                
                                <li>
-                                    <a href="<?php echo base_url();?>server/monitor/graphs">Graphs</a>
+                                    <a href="<?php echo base_url();?>server/monitor/reports">Reports</a>
                                 </li>
                                
                                

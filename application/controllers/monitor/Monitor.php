@@ -59,5 +59,16 @@ public function services(){
 	
 }
 
+public function reports(){
+
+		$this->load->view('header');
+                $this->load->view('dashboard');
+                $this->load->view('monitor/reports');
+                $this->load->view('footer');	
+	
+}
+
+
+
  
 }

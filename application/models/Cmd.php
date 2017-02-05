@@ -9,32 +9,53 @@ class Cmd extends CI_Model {
     }
     
 
-        public function select_all($limit, $start) {
-        //$sql = "imp_cmds ORDER BY `imp_cmds`.`time` ASC limit ".$start.",".$limit;
-       $this->db->limit($limit, $start);
-       $query = $this->db->get("imp_cmds");
-        
-        if ($query->num_rows() > 0) {
-        return $query->result();
-        } else {
-        return false;
-        }
-        }
-        public function cmdcount(){
-            return $this->db->count_all("imp_cmds");
-        }   
-// 		
- // public function select_all() {
-        // $this->db->select('*');
-        // $this->db->from('imp_cmds');
-        // $query = $this->db->get();
-        // if ($query->num_rows() > 0) {
-        // return $query->result();
-        // } else {
-        // return false;
-        // }
-        // }
- 
+public function select_all($limit, $start) {
+//$sql = "imp_cmds ORDER BY `imp_cmds`.`time` ASC limit ".$start.",".$limit;
+
+//$uid = $this->session->userdata['logged_in']['id']    
+$role = $this->session->userdata['logged_in']['role'];   
+if($role == 'admin') {
+$this->db->limit($limit, $start);
+$query = $this->db->get("imp_cmds");
+} else {
+    $id = $this->session->userdata['logged_in']['id'];
+    $this->db->select('*');
+    $this->db->from('imp_cmds');
+    $this->db->where('role', $role);
+    $this->db->where('user_id', $id);
+    $this->db->limit($limit, $start);
+    $query = $this->db->get();
+    
+}
+
+
+if ($query->num_rows() > 0) {
+return $query->result();
+} else {
+return false;
+}
+}
+
+public function cmdcount(){
+    $role = $this->session->userdata['logged_in']['role'];   
+    if($role == 'admin'){
+    return $this->db->count_all("imp_cmds");
+    
+} else {
+    $id = $this->session->userdata['logged_in']['id'];
+    $this->db->select('*');
+    $this->db->from('imp_cmds');
+    $this->db->where('role', $role);
+    $this->db->where('user_id', $id);
+    $query = $this->db->get();
+    
+    if ($query->num_rows() > 0) {
+    return $query->num_rows();
+    } else {
+    return false;
+    }
+}
+}   
  
  
 public function insertlink($title,$link,$des){
@@ -45,7 +66,7 @@ public function insertlink($title,$link,$des){
         
         foreach ($alltitles as $old){
         if($title == $old->title){
-            return "Link with Same title already Exist";
+            return FALSE;
         }
         }
         $data = array(
@@ -54,7 +75,7 @@ public function insertlink($title,$link,$des){
                 'description' => $des
             );
             $this->db->insert('imp_links', $data);
-            return "Link inserted Successfully";
+            return TRUE;
     }
 
         public function select_links() {

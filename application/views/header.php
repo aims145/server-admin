@@ -13,37 +13,37 @@
     <title>Server Administration Application</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/ci/assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="/ci/assets/bower_components/jquery/dist/jquery.min.js"></script>
+    <link href="<?php echo base_url(); ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="<?php echo base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- MetisMenu CSS -->
-    <link href="/ci/assets/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen"
-     href="/ci/assets/dist/css/bootstrap-datetimepicker.min.css">
+     href="<?php echo base_url(); ?>assets/dist/css/bootstrap-datetimepicker.min.css">
 <!--    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">-->
     <!-- Custom CSS -->
-    <link href="/ci/assets/dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="/ci/assets/dist/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/dist/css/bootstrap-datepicker.css" rel="stylesheet">
     
     
     
-	<link href="/ci/assets/dist/css/jquery.classyedit.css" rel="stylesheet">
-	<link href="/ci/assets/dist/css/bootstrap-multiselect.css" rel="stylesheet">
-<!--        <link href="/ci/assets/dist/css/bootstrap-switch.min.css" rel="stylesheet">-->
+	<link href="<?php echo base_url(); ?>assets/dist/css/jquery.classyedit.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>assets/dist/css/bootstrap-multiselect.css" rel="stylesheet">
+<!--        <link href="<?php echo base_url(); ?>assets/dist/css/bootstrap-switch.min.css" rel="stylesheet">-->
         
 	     
 <!-- BEGIN PAGE LEVEL STYLES -->
-<link rel="stylesheet" type="text/css" href="/ci/assets/global/plugins/select2/select2.css"/>
-<link rel="stylesheet" type="text/css" href="/ci/assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css"/>
-<link rel="stylesheet" type="text/css" href="/ci/assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css"/>
-<link rel="stylesheet" type="text/css" href="/ci/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/global/plugins/datatables/extensions/Scroller/css/dataTables.scroller.min.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/global/plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.min.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
 <!-- END PAGE LEVEL STYLES -->
     <!-- Custom Fonts -->
-    <link href="/ci/assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url(); ?>assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-      <link rel="stylesheet" href="/ci/assets/choosen/docsupport/prism.css">
-      <link rel="stylesheet" href="/ci/assets/choosen/chosen.css">
+      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/choosen/docsupport/prism.css">
+      <link rel="stylesheet" href="<?php echo base_url(); ?>assets/choosen/chosen.css">
         <style type="text/css" media="all">
     /* fix rtl for demo */
     .chosen-rtl .chosen-drop { left: -9000px; }

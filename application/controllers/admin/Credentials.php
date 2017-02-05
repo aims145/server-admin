@@ -12,35 +12,44 @@ class Credentials extends CI_Controller{
 		if(!$this->session->userdata('logged_in')){
 			redirect('login', 'refresh');
 		}
-		elseif ($this->session->userdata['logged_in']['role'] == 'user') {
-				redirect('login', 'refresh');
-		}
+//		elseif ($this->session->userdata['logged_in']['role'] == 'user') {
+//				redirect('login', 'refresh');
+//		}
          $this->load->model('Serverlist');
      }
      
-    public function index($msg = NULL){
-        // $this->load->library('form_validation');
-//         
-		//echo $this->session->userdata['logged_in']['role'];
-        $data['msg'] = $msg;
+    public function index(){
+                
+         if($this->uri->segment(3) == 1){
+        $data['msg'] = "Credential Added Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(3) == 2){
+        $data['msg'] = "Credential Updated Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(3) == 3){
+        $data['msg'] = "Credential Deleted Successfully";
+        $data['alert'] = "alert alert-danger";
+        }
+        
+        if($this->uri->segment(3) == 4){
+        $data['msg'] = "All Fields are Mandatory";
+        $data['alert'] = "alert alert-danger";
+        }
+        
         $this->load->view('header');
         $this->load->view('dashboard');
         $data['show_table'] = $this->Serverlist->select_all();
         $data['creddata'] = $this->Serverlist->select_cred();
         $this->load->view('credentials',$data);    
         $this->load->view('footer');
-        // echo $this->session->userdata('logged_in')['role'];
+        
     }
     
-//     public function show(){
-//        $server = $this->input->post('server');
-//        $proto = $this->input->post('protocol');
-//        $data = $this->Serverlist->cred($server,$proto);
-//        $this->load->view('header');
-//        $this->load->view('dashboard');
-//        $this->load->view('footer');
-//    }
-//    
+ 
     
     public function add(){
         
@@ -52,12 +61,20 @@ class Credentials extends CI_Controller{
             'server_ip' => $server_ip,
             'Protocol'  => $this->input->post('protocol'),
             'username' => $this->input->post('username'),
-            'password' => $this->input->post('password')
-            
+            'password' => $this->input->post('password'),
+            'pass_expiry' => $this->input->post('expiry'),
+            'user_id' => $this->session->userdata['logged_in']['id'], 
+            'role' => $this->session->userdata['logged_in']['role'], 
         );
+        
+        foreach ($data as $key => $value){
+            if(empty($value)){
+                redirect('server/credentials/4', 'refresh');
+            }
+        }
+        
         if($this->Serverlist->credinsert($data)){
-            $msg = "Credentials has been Added Successfully";
-            $this->index($msg);
+            redirect('server/credentials/1', 'refresh');
         }
          
 
@@ -67,8 +84,7 @@ class Credentials extends CI_Controller{
 //        $id = $this->input->post('id');
         $id = $this->input->post('credid');
         if($this->Serverlist->creddelete($id)){
-            $msg = "Data has been Deleted Successfully";
-            $this->index($msg);
+            redirect('server/credentials/3', 'refresh');
         }
         
     }
@@ -82,13 +98,28 @@ class Credentials extends CI_Controller{
         'server_ip' => $this->input->post('serverip'),
         'Protocol' => $this->input->post('protocol'),
         'username' => $this->input->post('username'),
-        'password' => $this->input->post('password')
+        'password' => $this->input->post('password'),
+        'pass_expiry' => $this->input->post('expiry')        
                 );
-        
-        if($this->Serverlist->credupdate($id, $data)){
-            $msg = "Data has been Updated Successfully";
-            $this->index($msg);
+                
+        foreach ($data as $key => $value){
+            if(empty($value)){
+                redirect('server/credentials/4', 'refresh');
+            }
         }
         
+        
+        if($this->Serverlist->credupdate($id, $data)){
+            redirect('server/credentials/2', 'refresh');
+        }
+        
+    }
+    
+    
+    public function selectone(){
+        $id = $this->input->post('id');
+        $data = $this->Serverlist->select_cred_one($id);
+        echo json_encode($data);
+      
     }
 }

@@ -15,7 +15,7 @@
         
     </div>
     <?php if(isset($msg)){ ?>
-    <div class="alert alert-success" role="alert" id="delcred" ><?php echo $msg; ?></div>
+    <div class="<?php echo $alert; ?>" role="alert"  ><?php echo $msg; ?></div>
     <?php }?>
     <div class="row">
     <div class="col-lg-4">
@@ -41,8 +41,8 @@
         </h4>
       </div>
       <div class="col-lg-2">
-      	<a class="btn btn-default  editlink" href="#editlink" data-toggle="modal" data-id="<?php echo $links->id;?>">Edit</a>
-     <a class="btn btn-danger pull-right deletelink" href="#deletelink" data-toggle="modal" data-id="<?php echo $links->id;?>">Delete</a>
+      	<a class="btn btn-default  editlink" href="#editlink" data-toggle="modal" data-id="<?php echo $links->id;?>"><i class='fa fa-edit'></i></a>
+     <a class="btn btn-danger pull-right deletelink" href="#deletelink" data-toggle="modal" data-id="<?php echo $links->id;?>"><i class='fa fa-trash-o'></i></a>
         </div>
       </div>
       </div>

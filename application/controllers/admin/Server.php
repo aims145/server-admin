@@ -8,12 +8,28 @@ class Server extends CI_Controller{
 		}
          $this->load->model('Serverlist');
      }
-    public function serverlist($msg = NULL){
+    public function serverlist(){
         //$this->load->model('serverlist');
-        $data['msg'] = $msg;
+        
+        if($this->uri->segment(3) == 1){
+        $data['msg'] = "Server Added Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(3) == 3){
+        $data['msg'] = "Server Deleted Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(3) == 4){
+        $data['msg'] = "This IP already Exist into Database";
+        $data['alert'] = "alert alert-danger";
+        }
+        
+        
+        $data['show_table'] = $this->Serverlist->select_all();
         $this->load->view('header');
         $this->load->view('dashboard');
-        $data['show_table'] = $this->Serverlist->select_all();
         $this->load->view('serverlist',$data);
         $this->load->view('footer');
        
@@ -26,19 +42,6 @@ class Server extends CI_Controller{
        
     }
 	
-	
-	
-	
-	
-    
-//public function addserver(){
-//        
-//        $this->load->view('header');
-//        $this->load->view('dashboard');
-//        $this->load->view('addserver');
-//        $this->load->view('footer');
-//       
-//    }
 
     
     public function deleteserver(){
@@ -46,8 +49,7 @@ class Server extends CI_Controller{
         $id = $this->input->post('serverid');
 //        echo $id;
          if($this->Serverlist->delete($id)){
-            $msg = "Server has been Deleted Successfully";
-            $this->serverlist($msg);
+            redirect('server/serverlist/3', 'refresh');
         }
         
     }
@@ -71,15 +73,24 @@ class Server extends CI_Controller{
     
     public function insertserver(){
         $this->load->model('Insertserver');
+        $ip = $this->input->post('serverip');
+        if($this->Serverlist->checkhost($ip)){
+            redirect('server/serverlist/4', 'refresh');
+        }else{
         $data = array(
             'server_name' => $this->input->post('servername'),
-            'server_ip' => $this->input->post('serverip'),
+            'server_ip' => $ip,
+            'OS' => $this->input->post('os'),
+            'RAM' => $this->input->post('ram'),
+            'HDD' => $this->input->post('hdd'),
+            'CPU' => $this->input->post('cpu'),
             'Remark' => $this->input->post('remark')
+            
         );
         
         if($this->Insertserver->form_insert($data)){
-            $msg = "Server has been Added Successfully";
-            $this->serverlist($msg);
+            redirect('server/serverlist/1', 'refresh');
+        }
         }
         
         

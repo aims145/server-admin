@@ -266,11 +266,11 @@
                         <!--<li>
                             <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>-->
-                       <?php  if($this->session->userdata['logged_in']['role'] == 'admin') { ?>
+                       
                         <li> 
                             <a href="<?php echo base_url();?>server/credentials"><i class="fa fa-edit fa-fw"></i>Credentials</a>
                         </li>
-          				<?php } ?>     
+          			  
           				
           				<li>
                             <a href="#"><i class="fa fa-desktop fa-fw"></i>Monitor<span class="fa arrow"></span></a>
@@ -297,12 +297,6 @@
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo base_url();?>server/tools/terminal">Terminal</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url();?>server/tools/ping">Ping</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url();?>server/tools/installpackages">Install Packages</a>
                                 </li>
                                 
                             </ul>

@@ -15,8 +15,8 @@
         </div>
         
     </div>
-    <?php if(isset($msg) && !is_numeric($msg)){ ?>
-    <div class="alert alert-success" role="alert" id="delcred" ><?php echo $msg; ?></div>
+    <?php if(isset($msg)){ ?>
+    <div class="<?php echo $alert; ?>" role="alert"  ><?php echo $msg; ?></div>
     <?php }?>
     <div class="row">
     <div class="col-lg-4">
@@ -52,14 +52,15 @@
         </div>
      
         <div class="col-lg-2">
-            <a class="btn btn-default editcmd" href="#editcmd" data-toggle="modal" data-id="<?php echo $cmds->id;?>">Edit</a>
-     <a class="btn btn-danger pull-right deletecmd" href="#deletcmd" data-toggle="modal" data-id="<?php echo $cmds->id;?>">Delete</a>
+            <a class="btn btn-default editcmd" href="#editcmd" data-toggle="modal" data-id="<?php echo $cmds->id;?>"><i class='fa fa-edit'></i></a>
+     <a class="btn btn-danger pull-right deletecmd" href="#deletcmd" data-toggle="modal" data-id="<?php echo $cmds->id;?>"><i class='fa fa-trash-o'></i></a>
         </div>
         </div>
       </div>
       <div id="<?php echo $cmds->id;  ?>" class="panel-collapse collapse">
           <div class="panel-body">
-              <h3   >Command</h3>
+              
+              <h3   >Command <?php echo "<b>( By - ".ucfirst($cmds->username).")</b>"; ?></h3> 
               <pre><?php echo $cmds->command; ?></pre>
               <h3   >Details</h3>
               <textarea readonly rows="5" class="form-control"><?php echo $cmds->description; ?></textarea>

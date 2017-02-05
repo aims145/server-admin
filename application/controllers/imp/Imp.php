@@ -15,14 +15,35 @@ class Imp extends CI_Controller{
         $this->load->model('Cmd');
      }
      
-	     public function commands($msg = NULL){
+	     public function commands(){
+                 
         $this->load->library('pagination');
+        
+        if($this->uri->segment(3) == 1){
+        $data['msg'] = "Command Added Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(3) == 2){
+        $data['msg'] = "Command Updated Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(3) == 3){
+        $data['msg'] = "Command Deleted Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(3) == 4){
+        $data['msg'] = "All Fields are Mandatory";
+        $data['alert'] = "alert alert-danger";
+        }
         
         //pagination settings
         $config['base_url'] = base_url().'server/imp/commands';
         $config['total_rows'] = $this->Cmd->cmdcount();
         //echo $config['total_rows'];
-        $config['per_page'] = "10";
+        $config['per_page'] = "5";
         $config["uri_segment"] = 4;
         $choice = $config["total_rows"] / $config["per_page"];
         $config["num_links"] = floor($choice);
@@ -49,7 +70,6 @@ class Imp extends CI_Controller{
         $data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
         $data['show_table'] = $this->Cmd->select_all($config['per_page'],$data['page']);
         $data['pagination'] = $this->pagination->create_links();
-        $data['msg'] = $msg;
         //load view
         $this->load->view('header');
         $this->load->view('dashboard');
@@ -58,36 +78,53 @@ class Imp extends CI_Controller{
         $this->load->view('footer');
     }
 	 
-	 
-	 
-    // public function commands($msg = NULL){
-// 
-        // $data['msg'] = $msg;
-        // //load view
-        // $this->load->view('header');
-        // $this->load->view('dashboard');
-        // $data['show_table'] = $this->Cmd->select_all();
-        // $this->load->view('imp/commands',$data);
-        // $this->load->view('footer');
-    // }
-    
-    
     public function addcmd(){
         $data = array(
         'title' =>  $this->input->post('cmdname'),
         'command' => $this->input->post('command'),
-        'description' => $this->input->post('description')           
+        'description' => $this->input->post('description'),
+        'username' =>  $this->session->userdata['logged_in']['username'], 
+        'user_id' => $this->session->userdata['logged_in']['id'], 
+        'role' => $this->session->userdata['logged_in']['role'], 
         );
+        
+        foreach ($data as $key => $value){
+            if(empty($value)){
+                redirect('server/imp/4', 'refresh');
+            }
+        }
         if($this->Cmd->insert($data)){
-            $msg = "Command added Successfully";
-//            echo "inserted ".$msg;
-            $this->commands($msg);
+            redirect('server/imp/1', 'refresh');
         }
        
     }
 
-    public function links($msg = NULL){
-        $data['msg'] = $msg;
+    public function links(){
+        if($this->uri->segment(4) == 1){
+        $data['msg'] = "Command Added Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(4) == 2){
+        $data['msg'] = "Command Updated Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(4) == 3){
+        $data['msg'] = "Command Deleted Successfully";
+        $data['alert'] = "alert alert-success";
+        }
+        
+        if($this->uri->segment(4) == 4){
+        $data['msg'] = "All Fields are Mandatory";
+        $data['alert'] = "alert alert-danger";
+        }
+        
+        if($this->uri->segment(4) == 4){
+        $data['msg'] = "Same Title is already in Links. Please use another.";
+        $data['alert'] = "alert alert-danger";
+        }
+        
         $this->load->view('header');
         $this->load->view('dashboard');
         $data['show_table'] = $this->Cmd->select_links();
@@ -101,7 +138,12 @@ class Imp extends CI_Controller{
         $title =  $this->input->post('linkname');
         $link = $this->input->post('link');
         $des = $this->input->post('details');               
-        $msg = $this->Cmd->insertlink($title,$link,$des);
+        if($this->Cmd->insertlink($title,$link,$des)){
+           redirect('server/imp/links/1', 'refresh');
+        }
+        else{
+            redirect('server/imp/links/5', 'refresh');
+        }
         $this->links($msg);
         
        
@@ -110,8 +152,7 @@ class Imp extends CI_Controller{
   public function delcmd(){
         $id = $this->input->post('cmdid');
         if($this->Cmd->delcmd($id)){
-                $msg = "Command Deleted Successfully";
-                $this->commands($msg);
+               redirect('server/imp/3', 'refresh');
         }
   }
 
@@ -145,8 +186,7 @@ class Imp extends CI_Controller{
         );
         
         if($this->Cmd->update($id,$table,$data)){
-            $msg = "Command updated Successfully";
-            $this->commands($msg);
+             redirect('server/imp/2', 'refresh');
         }
         }
         else{

@@ -1,3 +1,13 @@
+ <?php if ($this->session->userdata['logged_in']['role'] == 'admin') {
+     $role = TRUE;   
+     $tabid = "myTableServerList";
+ }else{
+     $role =  FALSE;
+     $tabid = "myTable";
+ } 
+ 
+ ?>
+
 <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
@@ -7,7 +17,7 @@
                 </div>
             <!-- /.row -->
   <?php if(isset($msg)){ ?>
-    <div class="alert alert-success" role="alert" id="delcred" ><?php echo $msg; ?></div>
+    <div class="<?php echo $alert; ?>" role="alert" id="delcred" ><?php echo $msg; ?></div>
 <?php }?>
             <div class="row">
                 <div class="col-lg-12">
@@ -19,7 +29,7 @@
 
 							
                             <div class="panel-body">
-                            	<?php if ($this->session->userdata['logged_in']['role'] == 'admin') { ?>
+                            	<?php if ($role) { ?>
                             <a href="#addserver" data-toggle="modal" class="btn btn-primary addserver" >Add Server</a>
                             <?php } ?>
                             <p></p>
@@ -29,18 +39,23 @@
                                     echo '<div class="alert alert-success">' . $update . '</div>';   
                                 } ?>   
                             <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="myTable">
+                                <table class="table table-striped table-bordered table-hover" id="<?php echo $tabid;?>">
                                     <thead>
                                         <tr>
-                                            
+<?php if($role) { ?>
                                             <th>Server Name</th>
                                             <th>Server IP</th>
                                             <th>Remark</th>
-                                            <?php if ($this->session->userdata['logged_in']['role'] == 'admin') { ?>
-                                            <th>View </th>
-                                            <th> Edit </th>
-                                            <th> Delete</th>
-                                            <?php } ?>
+                                            <th>View</th>
+                                            <th>Edit</th>
+                                            <th>Delete </th>
+<?php }
+ else { ?>
+                                            <th>Server Name</th>
+                                            <th>Server IP</th>
+                                            <th>Remark</th>
+<?php }
+?>                                            
                                             
                                         </tr>
                                     </thead>
@@ -50,14 +65,22 @@
                                         if(isset($show_table)) {
                                         foreach ($show_table as $server)
                                         {
-                                            echo '<tr class="odd gradeX">' . '<td>' . $server->server_name . '</td>' . '<td>' . $server->server_ip . 
+                                            echo '<tr>' . '<td>' . $server->server_name . '</td>' . '<td>' . $server->server_ip . 
                                                     '</td>' . '<td>' . $server->Remark . '</td>';
-if ($this->session->userdata['logged_in']['role'] == 'admin'){ 													
+if ($role){ 													
                                                    echo '<td>    
 
-<a href="'.base_url().'server/serverlist#viewserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-default viewserver" >View</a></td>                                                    
-<td><a href="'.base_url().'server/serverlist#editserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-primary editserver" onclick="editserver(this);">Edit</a></td>
-<td><a href="'.base_url().'server/serverlist#deleteserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-danger delserver">Delete</a>
+<a href="'.base_url().'server/serverlist#viewserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-default viewserver" >
+<i class="fa fa-eye"></i>    
+</a></td>                                                    
+<td><a href="'.base_url().'server/serverlist#editserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-primary editserver" onclick="editserver(this);" title="Edit">
+<i class="fa fa-edit"></i>
+</a>
+</td>
+    
+<td><a href="'.base_url().'server/serverlist#deleteserver" data-id="'.$server->id.'" data-toggle="modal" class="btn btn-danger delserver">
+<i class="fa fa-trash-o"></i>    
+</a>
                                                     </td>';
 }
                                                     
@@ -162,22 +185,7 @@ if ($this->session->userdata['logged_in']['role'] == 'admin'){
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
 <div class="modal fade" id="addserver">
@@ -203,16 +211,47 @@ if ($this->session->userdata['logged_in']['role'] == 'admin'){
                         
                     </div>
                 </div>
+                     
+                    
+                 <div class=" form-group">
+                    <label for="remark" class=" control-label col-lg-3">RAM</label>
+                    <div class=" col-lg-6">
+                        <input type="text" class="form-control" name="ram" placeholder="RAM" required>
+                    </div>
+                </div>
                 
                 
-                <div class=" form-group">
+                 <div class=" form-group">
+                    <label for="cpu" class=" control-label col-lg-3">CPU</label>
+                    <div class=" col-lg-6">
+                        <input type="text" class="form-control" name="cpu" placeholder="CPU" required>
+                    </div>
+                </div>
+                
+                 <div class=" form-group">
+                    <label for="hdd" class=" control-label col-lg-3">HDD</label>
+                    <div class=" col-lg-6">
+                        <input type="text" class="form-control" name="hdd" placeholder="HDD " required>
+                    </div>
+                </div>
+                
+                 <div class=" form-group">
+                    <label for="os" class=" control-label col-lg-3">OS</label>
+                    <div class=" col-lg-6">
+                        <input type="text" class="form-control" name="os" placeholder="OS" required>
+                    </div>
+                </div>
+                
+                
+                 <div class=" form-group">
                     <label for="remark" class=" control-label col-lg-3">Remark</label>
                     <div class=" col-lg-6">
                         <input type="text" class="form-control" name="remark" placeholder="Remark" required>
                     </div>
                 </div>
-                     
-                    
+                
+                
+                
                 
             </div>
                       
@@ -273,6 +312,43 @@ if ($this->session->userdata['logged_in']['role'] == 'admin'){
                         
                     </div>
                 </div>
+                
+                 <div class=" form-group">
+                    <label for="ram" class=" control-label col-lg-3">RAM</label>
+                    <div class=" col-lg-6">
+                        <input type="text" class="form-control" name="ram" id="ram" required>
+                        
+                    </div>
+                </div>
+                
+                <div class=" form-group">
+                    <label for="cpu" class=" control-label col-lg-3">CPU</label>
+                    <div class=" col-lg-6">
+                        <input type="text" class="form-control" name="cpu" id="cpu" required>
+                        
+                    </div>
+                </div>
+                
+                
+                <div class=" form-group">
+                    <label for="hdd" class=" control-label col-lg-3">HDD</label>
+                    <div class=" col-lg-6">
+                        <input type="text" class="form-control" name="hdd" id="hdd" required>
+                        
+                    </div>
+                </div>
+                
+                <div class=" form-group">
+                    <label for="os" class=" control-label col-lg-3">OS</label>
+                    <div class=" col-lg-6">
+                        <input type="text" class="form-control" name="os" id="os" required>
+                        
+                    </div>
+                </div>
+                
+                
+                
+                
                 
                 
                 <div class=" form-group">

@@ -13,6 +13,9 @@ public function index($username,$password){
    {
         $res = $query->result();
         $decoded = $this->encrypt->decode($res[0]->password);
+		//echo $this->encrypt->encode($password);
+		//echo $decoded;
+		//die();
      if($password == $decoded){
      return $query->result();
      }

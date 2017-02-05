@@ -17,7 +17,7 @@ function showform(){
     </div>
     
     <?php if(isset($msg)){ ?>
-    <div class="alert alert-success" role="alert" id="delcred" ><?php echo $msg; ?></div>
+    <div class="<?php echo $alert; ?>" role="alert" id="delcred" ><?php echo $msg; ?></div>
     <?php }?>
     <a  id="addbtn" data-toggle="modal" class="btn btn-primary" href="#addcred" >Add Credentials</a>
     
@@ -33,7 +33,7 @@ function showform(){
              <div class="panel-body">
                   <div class="dataTable_wrapper portlet-body">
                   <table class="table table-striped table-bordered table-hover" 
-                         id="myTable">
+                         id="myTablecreds">
                     <thead>
                         <tr>
                             <th>Server Name</th>
@@ -41,6 +41,7 @@ function showform(){
                             <th>Protocol</th>
                             <th>User Name</th>
                             <th>Password</th>
+                            <th>Expiry</th>
                             <th>Action</th>
                             
 
@@ -48,7 +49,7 @@ function showform(){
                     </thead>
                     <tbody>
                         <?php
-                        
+                        if($creddata){
                         foreach($creddata as $cred){
                             echo "<tr>
                             <td>".$cred->server_name."</td>
@@ -66,11 +67,12 @@ function showform(){
                 </span>
                 </div>
 </td>
+<td>".$cred->pass_expiry." Days</td>
                             <td><a data-toggle='modal' href='#editcred' data-id='".$cred->id."' class='btn btn-default edit' onclick='editcred(this);' title='Edit'><i class='fa fa-edit'></i></a>  <a href='#deletecred' data-toggle='modal' class='btn btn-danger delete' data-id='".$cred->id."' id='delete' title='Delete'><i class='fa fa-trash-o'></i></a></td>
                             </tr>";
 							
                         }
-                        
+                        }
                         //
                         ?>
                                                                        
@@ -124,14 +126,14 @@ function showform(){
                     <div class="form-group">
                         <label for="servername" class="control-label col-lg-4">Server Name</label>
                         <div class="col-lg-6 ">
-                            <input type="text" class="form-control" id="servername" name="servername" value=''>
+                            <input type="text" class="form-control" id="servername" name="servername" value='' readonly="readonly">
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label for="serverip" class="control-label col-lg-4">Server IP</label>
                         <div class="col-lg-6 ">
-                            <input type="test" class="form-control" id="serverip" name="serverip" value=''>
+                            <input type="test" class="form-control" id="serverip" name="serverip" value='' readonly="readonly">
                         </div>
                     </div>
                    
@@ -155,6 +157,19 @@ function showform(){
                             <input type="test" class="form-control" id="password" name="password" value=''>
                         </div>
                     </div>
+                   
+                   <div class=" form-group">
+                 <label for="expiry" class=" control-label col-lg-4">Expiry</label>
+                 <div class=" col-lg-6">
+                     <select type="text" class="form-control" name="expiry" >
+                         <option value="" selected="selected">Select Password Expiry</option>
+                         <option value="30">1 Month</option>
+                         <option value="60">2 Month</option>
+                         <option value="90">3 Month</option>
+                         
+                     </select>
+                    </div>
+                </div> 
                         
                 </div>
             </div>
@@ -232,7 +247,22 @@ function showform(){
                     <div class=" col-lg-4">
                         <input type="button" class="form-control btn btn-primary generator" name="generator" id="generator" value="Generate Password">
                     </div>
-                </div>    
+                </div>  
+                
+                
+                 <div class=" form-group">
+                 <label for="expiry" class=" control-label col-lg-3">Expiry</label>
+                 <div class=" col-lg-6">
+                     <select type="text" class="form-control" name="expiry" >
+                         <option value="">Select Password Expiry</option>
+                         <option value="30">1 Month</option>
+                         <option value="60">2 Month</option>
+                         <option value="90">3 Month</option>
+                     </select>
+                    </div>
+                </div> 
+                
+                
                 
             </div>
                       
@@ -245,34 +275,3 @@ function showform(){
         </div>
         </div>
     </div>    
-<!--    <div class="modal fade" id="deletecred">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="form-horizontal" method="post" action="<?php echo base_url()?>login/process">
-                <div class="modal-header">
-                    <h4>Login Form</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="username" class="control-label col-lg-3">User Name</label>
-                        <div class="col-lg-6 ">
-                            <input type="text" class="form-control" id="username" name="username" placeholder="User Name">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password" class="control-label col-lg-3">Password</label>
-                        <div class="col-lg-6 ">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
-                        </div>
-                    </div>
-                        
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-default" data-dismiss="modal">Close</a>
-                    <button type="submit" class="btn btn-primary" >Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>-->

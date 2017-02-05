@@ -27,6 +27,18 @@ return false;
 }
 
 
+public function checkhost($ip) {
+$this->db->select('*');
+$this->db->from('server_list');
+$this->db->where('server_ip', $ip);
+$query = $this->db->get();
+if ($query->num_rows() > 0) {
+return TRUE;
+} else {
+return FALSE;
+}
+}
+
 
 function delete($id){
     $this->db->where('id',$id);
@@ -93,15 +105,45 @@ function selectname($ip){
 }
 
 public function select_cred() {
+$role = $this->session->userdata['logged_in']['role'];
+if($role == 'admin'){
 $this->db->select('*');
 $this->db->from('credentials');
 $query = $this->db->get();
+}else{
+
+$id = $this->session->userdata['logged_in']['id'];
+$this->db->select('*');
+$this->db->from('credentials');
+$this->db->where('role', $role);
+$this->db->where('user_id', $id);
+$query = $this->db->get();
+    
+}
+
 if ($query->num_rows() > 0) {
 return $query->result();
 } else {
 return false;
 }
 }
+
+
+public function select_cred_one($id) {
+
+$this->db->select('*');
+$this->db->from('credentials');
+$this->db->where('id', $id);
+$query = $this->db->get();
+
+if ($query->num_rows() > 0) {
+return $query->result();
+} else {
+return false;
+}
+}
+
+
 
 }
 ?>

@@ -77,7 +77,24 @@
 $(document).ready(function() {
     $('#myTable').DataTable( {
         
-        "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 0, 1 ] } ]
+        
+    } );
+} );
+
+$(document).ready(function() {
+    $('#myTablecreds').DataTable( {
+        
+        "aoColumnDefs": [ { "bSortable": false, "aTargets": [4,  5] } ]
+        
+    } );
+} );
+
+
+
+$(document).ready(function() {
+    $('#myTableServerList').DataTable( {
+        
+        "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 3, 4, 5 ] } ]
         
     } );
 } );
@@ -109,20 +126,33 @@ function rhtmlspecialchars(str) {
 function editcred(element){
      $(document).on("click", ".edit", function () {
      var credid = $(this).data('id');
-     
+     console.log(credid);
      document.getElementById('credid2').value = credid;
      
+       $.ajax({
+      type : 'post',
+      url  : '<?php echo base_url();?>server/credentials/selectone',
+      data : "id="+credid,
+      //dataType : 'json',
+      success : function(res) {
+          //console.log(res);
+          var dataObj = JSON.parse(res);
+          
+    document.getElementById('servername').value = dataObj[0].server_name ; 
+    document.getElementById('serverip').value = dataObj[0].server_ip ; 
+    document.getElementById('protocol').value = dataObj[0].Protocol ; 
+    document.getElementById('username').value = dataObj[0].username ; 
+    document.getElementById('password').value = dataObj[0].password ; 
+          
+        }
+      
+    });
+     
+     
+     
+     
 });
-    var name = element.parentNode.parentNode.cells[0].innerHTML ;
-    var ip = element.parentNode.parentNode.cells[1].innerHTML ;
-    var proto = element.parentNode.parentNode.cells[2].innerHTML ;
-    var username = element.parentNode.parentNode.cells[3].innerHTML ;
-    var pass = rhtmlspecialchars(element.parentNode.parentNode.cells[4].innerHTML);
-    document.getElementById('servername').value = name ; 
-    document.getElementById('serverip').value = ip ; 
-    document.getElementById('protocol').value = proto ; 
-    document.getElementById('username').value = username ; 
-    document.getElementById('password').value = pass ; 
+   
 
 }
 

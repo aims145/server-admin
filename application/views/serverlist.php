@@ -63,6 +63,7 @@
                                     
                                         <?php 
                                         if(isset($show_table)) {
+											if($show_table) {
                                         foreach ($show_table as $server)
                                         {
                                             echo '<tr>' . '<td>' . $server->server_name . '</td>' . '<td>' . $server->server_ip . 
@@ -85,7 +86,8 @@ if ($role){
 }
                                                     
                                                     echo '</tr>';
-                                        }                                        
+                                        }                    
+											}
                                         }
                                         ?>
                                        

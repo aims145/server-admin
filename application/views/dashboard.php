@@ -326,6 +326,21 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+						
+						<li>
+                            <a href="#"><i class="fa fa-file-archive-o fa-fw"></i>File Management<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo base_url();?>server/filemgmt/upload">Upload Files</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo base_url();?>server/filemgmt/downlaod">Download Files</a>
+                                </li>
+                                                            
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                         
                         <li>
                             <a href="#"><i class="fa fa-clock-o fa-fw"></i>Scheduler<span class="fa arrow"></span></a>

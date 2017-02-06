@@ -42,14 +42,14 @@
       </div>
       <div class="col-lg-2">
       	<a class="btn btn-default  editlink" href="#editlink" data-toggle="modal" data-id="<?php echo $links->id;?>"><i class='fa fa-edit'></i></a>
-     <a class="btn btn-danger pull-right deletelink" href="#deletelink" data-toggle="modal" data-id="<?php echo $links->id;?>"><i class='fa fa-trash-o'></i></a>
+     <a class="btn btn-danger pull-right deletelink" href="#deletelink" data-toggle="modal" data-id="<?php echo $links->id;?>" ><i class='fa fa-trash-o'></i></a>
         </div>
       </div>
       </div>
       <div id="<?php echo $links->id;  ?>" class="panel-collapse collapse">
           <div class="panel-body">
               <h3 >Link</h3>
-              <pre><a href="<?php echo $links->link; ?>" ><?php echo $links->link; ?></a></pre>
+              <pre><a href="<?php echo $links->link; ?>" target="_blank" ><?php echo $links->link; ?></a></pre>
               <h3  >Details</h3>
               <textarea readonly rows="10" class="form-control"><?php echo $links->description; ?></textarea>
           </div>

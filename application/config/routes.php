@@ -119,5 +119,7 @@ $route['server/serverstatus/services'] = 'admin/Serverstatus/services';
 $route['server/serverstatus/servicerequest'] = 'admin/Serverstatus/servicerequest';
 $route['server/serverstatus/usage'] = 'admin/Serverstatus/usage';
 $route['server/serverstatus/stats'] = 'admin/Serverstatus/stats';
+$route['server/filemgmt/upload'] = 'admin/Filemgmt/upload';
+$route['server/filemgmt/download'] = 'admin/Filemgmt/download';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

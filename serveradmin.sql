@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2017 at 06:24 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: Feb 06, 2017 at 12:12 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -44,7 +44,7 @@ CREATE TABLE `credentials` (
 --
 
 INSERT INTO `credentials` (`id`, `server_name`, `server_ip`, `Protocol`, `username`, `password`, `pass_expiry`, `user_id`, `role`, `time`) VALUES
-(1, 'localhost', '192.168.0.16', 'mysql', 'root', 'j5k8w0KN&cK9?S6\\', '30', 1, 'admin', '2017-02-05 17:00:33');
+(2, 'impetus-1447', '192.168.41.130', 'ssh', 'hduser', 'hd@1234', '90', 1, 'admin', '2017-02-06 07:31:04');
 
 -- --------------------------------------------------------
 
@@ -54,21 +54,22 @@ INSERT INTO `credentials` (`id`, `server_name`, `server_ip`, `Protocol`, `userna
 
 CREATE TABLE `imp_cmds` (
   `id` int(10) NOT NULL,
-  `title` varchar(200) NOT NULL,
+  `title` varchar(250) NOT NULL,
   `command` text NOT NULL,
   `description` longtext NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `username` varchar(200) DEFAULT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `imp_cmds`
 --
 
-INSERT INTO `imp_cmds` (`id`, `title`, `command`, `description`, `username`, `user_id`, `role`, `time`) VALUES
-(0, 'ddasd', 'asssdada', 'dasdsdsada', 'admin', 1, 'admin', '2017-02-05 17:10:53');
+INSERT INTO `imp_cmds` (`id`, `title`, `command`, `description`, `username`, `user_id`, `role`, `Time`) VALUES
+(1, 'xxxx', 'xxxx', 'xxxxxxxxxxx', 'admin', 1, 'admin', '2017-02-06 09:17:32'),
+(2, 'aaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaa', 'admin', 1, 'admin', '2017-02-06 09:17:40');
 
 -- --------------------------------------------------------
 
@@ -78,14 +79,22 @@ INSERT INTO `imp_cmds` (`id`, `title`, `command`, `description`, `username`, `us
 
 CREATE TABLE `imp_links` (
   `id` int(10) NOT NULL,
-  `title` varchar(200) NOT NULL,
+  `title` varchar(250) NOT NULL,
   `link` text NOT NULL,
   `description` longtext NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `username` varchar(200) DEFAULT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `imp_links`
+--
+
+INSERT INTO `imp_links` (`id`, `title`, `link`, `description`, `username`, `user_id`, `role`, `Time`) VALUES
+(1, 'sasas', 'sasasas', 'sasasasas', NULL, NULL, NULL, '2017-02-06 09:15:30'),
+(2, 'ssssssssss', 'ssssssssssssss', 'sssssssssssss', NULL, NULL, NULL, '2017-02-06 09:15:40');
 
 -- --------------------------------------------------------
 
@@ -95,20 +104,22 @@ CREATE TABLE `imp_links` (
 
 CREATE TABLE `imp_scripts` (
   `id` int(10) NOT NULL,
-  `title` varchar(200) NOT NULL,
+  `title` varchar(250) NOT NULL,
   `script` longtext NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `description` longtext NOT NULL,
+  `username` varchar(200) DEFAULT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `imp_scripts`
 --
 
-INSERT INTO `imp_scripts` (`id`, `title`, `script`, `username`, `user_id`, `role`, `time`) VALUES
-(0, 'eeee', 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\r\neeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee\r\n', '', 0, '', '2017-02-05 17:17:11');
+INSERT INTO `imp_scripts` (`id`, `title`, `script`, `description`, `username`, `user_id`, `role`, `Time`) VALUES
+(3, 'Cluster.sh - Ambari Prerequisites script Part2', '#!/bin/bash\r\n\r\n#Prerequites Setup\r\n\r\n################### - Sourcing Variable defined in Hosts.sh\r\n\r\nsource ./hosts.sh\r\n\r\n##################################################################################\r\n\r\n\r\n################### -Checking sshpass is installed or not. If not installed then Installing SSHPASS for ssh connection without typing Password.\r\n\r\necho \"Checking sshpass is installed or not \"\r\n\r\nstatus=`sudo rpm -qa|grep sshpass|wc -l`\r\n\r\n\r\nif [[ $status -eq 0 ]]\r\nthen\r\necho \"Installing SSHPASS\"\r\nsudo rpm -ivh sshpass-1.05-1.el6.x86_64.rpm\r\nelse\r\necho \"SSHPASS already installed\"\r\nfi\r\n\r\n#####################################################################################\r\n\r\n\r\n################### Generating SSH Key if not Exit\r\n\r\nif [[ -f ~/.ssh/id_rsa && ~/.ssh/id_rsa.pub ]];then\r\n\r\necho \"SSH Key Exist already | Copying to all hosts\"\r\n\r\nelse\r\necho \"Creating ssh Key\"\r\n`echo -e  \'y\\n\'|ssh-keygen -q -t rsa -N \"\" -f ~/.ssh/id_rsa`\r\nfi\r\n\r\n#####################################################################################\r\n\r\n\r\n################### Starting Passwordless SSH Process\r\n\r\necho \"Setting up Password Less ssh...........\"\r\n\r\nfor (( i=0; i<${#hostip[@]}; i++ ))\r\ndo\r\necho \"SSH setup for ${hostip[$i]} (${host_name[$i]})\"\r\n\r\nif [[ ${#username[@]} -gt 1 ]];then\r\npass=\"${password[$i]}\"\r\nuser=\"${username[$i]}\"\r\nelse\r\npass=\"${password[0]}\"\r\nuser=\"${username[0]}\"\r\nfi\r\n\r\n\r\n`sshpass -p $pass ssh   -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  \"$user\"@\"${hostip[$i]}\" \"mkdir .ssh\"`\r\n\r\n`sshpass -p $pass ssh  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  \"$user\"@\"${hostip[$i]}\" \"chmod 700 .ssh\"`\r\n\r\n`sshpass -p $pass scp   -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no ~/.ssh/id_rsa.pub  \"$user\"@\"${hostip[$i]}\":./.ssh/authorized_keys`\r\n\r\n`sshpass -p $pass ssh  -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no   \"$user\"@\"${hostip[$i]}\" \" chmod 600 .ssh/authorized_keys\"`\r\n\r\n####################################################################################\r\n\r\n\r\n################### Download Java if archive is not Exist\r\n\r\nif [[ ! -f ./$javaarchive ]];then\r\n`wget $javaurl`\r\nfi\r\n\r\n\r\n\r\n`scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ./$javaarchive \"$user\"@\"${hostip[$i]}\":./`\r\n\r\nssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -tt \"$user\"@\"${hostip[$i]}\" <<eof\r\nsudo service iptables stop\r\nsudo  chkconfig iptables off\r\nsudo tar -zxf \"$javaarchive\" -C /usr/share/java/\r\nsudo sed -i \'s/SELINUX=enforcing/SELINUX=disabled/g\' /etc/sysconfig/selinux\r\nsudo yum install ntp -y\r\nsudo chkconfig ntpd on\r\nsudo service ntpd start\r\nexit\r\neof\r\n\r\nfor (( j=0; j<${#hostip[@]}; j++ ))\r\ndo\r\nssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -tt \"$user\"@\"${hostip[$i]}\" <<eof\r\nsudo su\r\necho \"${hostip[$j]} ${host_name[$j]}\" >> /etc/hosts\r\nexit\r\nexit\r\neof\r\n\r\ndone\r\n\r\ndone\r\n######################################################################################\r\n##############   End Script\r\ndestfolder=`tar -tzf ./$javaarchive |head -1|cut -d/ -f1`\r\n\r\nprintf \"\\n\\n\\n\"\r\n\r\necho \"Java path for Ambari is -  /usr/share/java/$destfolder\"\r\n\r\necho \"######################################################################################\"\r\necho \"##############   Thanks for Using Script\"\r\necho \"######################################################################################\"', '', NULL, NULL, NULL, '2017-02-06 09:21:42'),
+(4, 'host.sh - Ambari Prerequisites script Part1', '#!/bin/bash\r\n#this script contains all required details\r\n\r\n######## Enter all host\'s IP for setting up all Hadoop Prerequites . This is an array each IP should be under quotes and separated by white space.\r\nhostip=(\"172.26.41.82\")\r\n\r\n######## Enter all hostname for setting up all Hadoop Prerequites . This is an array each hostname should be under quotes and separated by white space.\r\nhost_name=(\"impetus-82server\")\r\n\r\n\r\n######## Enter the User name which is being used for Passwordless SSH. User must be sudo user with no Password. Otherwise Script will not work Properly.\r\nusername=(\"testing\")\r\n######## Enter Password for Respective user\r\npassword=(\'aims145\')\r\n\r\n######## URL for Downloading Java\r\njavaurl=\"http://public-repo-1.hortonworks.com/ARTIFACTS/jdk-8u60-linux-x64.tar.gz\"\r\n######## Downloaded Archive Name\r\njavaarchive=\"jdk-8u60-linux-x64.tar.gz\"\r\n', '', NULL, NULL, NULL, '2017-02-06 09:22:20');
 
 -- --------------------------------------------------------
 
@@ -132,7 +143,7 @@ CREATE TABLE `server_list` (
 --
 
 INSERT INTO `server_list` (`id`, `server_name`, `server_ip`, `OS`, `RAM`, `CPU`, `HDD`, `Remark`) VALUES
-(1, 'localhost', '192.168.0.16', 'Centos', '5', '10.0', '240', 'Hello testing news');
+(3, 'impetus-1447', '192.168.41.130', 'Centos6', '8GB', '4', '1TB', 'Ilabs - DB Cluster');
 
 -- --------------------------------------------------------
 
@@ -169,6 +180,24 @@ ALTER TABLE `credentials`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `imp_cmds`
+--
+ALTER TABLE `imp_cmds`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `imp_links`
+--
+ALTER TABLE `imp_links`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `imp_scripts`
+--
+ALTER TABLE `imp_scripts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `server_list`
 --
 ALTER TABLE `server_list`
@@ -188,12 +217,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `credentials`
 --
 ALTER TABLE `credentials`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `imp_cmds`
+--
+ALTER TABLE `imp_cmds`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `imp_links`
+--
+ALTER TABLE `imp_links`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `imp_scripts`
+--
+ALTER TABLE `imp_scripts`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `server_list`
 --
 ALTER TABLE `server_list`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `users`
 --

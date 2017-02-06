@@ -42,7 +42,7 @@
                 <div class=" form-group">
                     <label for="servername" class=" control-label col-lg-3">File Description</label>
                     <div class=" col-lg-6">
-                        <input type="text" class="form-control" name="servername" placeholder="Server Name" required>
+                        <input type="text" class="form-control" name="filedes" placeholder="File Description" required>
                 </div>
                 </div>
                 
@@ -63,6 +63,7 @@
                     
                     
             </form>
+                                <hr>
 
                                 
                                 
